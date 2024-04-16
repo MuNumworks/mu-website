@@ -9,14 +9,45 @@
   </head>
 
   <body>
-    <h1>Test de l'installation</h1>
-    <div>
-      <button id="connect">Connect</button>
-      <p>Status: <span id="status">Disconnected.</span></p>
-    </div>
-    <div id="content">Please connect your Numworks.</div>
+    <header>
+      <div>
+        <h1>Mu - Bring power to your Numworks</h1>
+        <nav>
+          <ul id="nav-bar">
+            <li>
+              <a href="../index.html">Home</a>
+            </li>
+            <li><a href="">Install</a></li>
+            <li><a href="changelog.html">Releases</a></li>
+            <li><a href="simulator.html">Simulator</a></li>
+            <li>
+              <a href="https://github.com/MuNumworks/MU" target="_blank"
+                >Github</a
+              >
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+    <main>
+      <div id="installGen">
+        <h2>Install MU</h2>
+        <div id="install">
+          <div class="installButton" id="connect">Connect</div>
+          <div class="installButton" id="installMu">Install</div>
+        </div>
+        <p>Status: <span id="status">Disconnected.</span></p>
+        <div id="content">Please connect your Numworks.</div>
 
+        <div id="scriptsContainer"></div>
+      </div>
+    </main>
+    <br />
     <script src="../Scripts/numworks.js"></script>
     <script src="../Scripts/install.js"></script>
+    <footer>
+      <div id="FOOTER">&copy; Systeme Eratz</div>
+    </footer>
+    <br /><br />
   </body>
 </html>
