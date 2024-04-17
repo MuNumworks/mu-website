@@ -51,7 +51,6 @@ async function connected() {
 }
 
 async function flashEpsilonOnboardingA() {
-  // Chemin d'accès au fichier .bin
   const cheminFichier = "../Bins/Chrys130/epsilon.onboarding.A.bin";
 
   try {
@@ -61,10 +60,8 @@ async function flashEpsilonOnboardingA() {
     }
 
     const buffer = await response.arrayBuffer();
-    //displayFileContents(buffer);
 
-    // Appelez la fonction flashExternal avec votre buffer
-    await calculator.flashExternal(buffer);
+    //await calculator.flashExternal(buffer);
 
     console.log(
       "Flashing epsilon.onboarding.A.bin to external memory successful!",
