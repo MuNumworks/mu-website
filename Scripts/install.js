@@ -51,17 +51,17 @@ async function connected() {
 }
 
 async function flashEpsilonOnboardingA() {
-  const cheminFichier = "../Bins/Chrys130/epsilon.onboarding.A.bin";
+  //const cheminFichier = "../Bins/Chrys130/epsilon.onboarding.A.bin";
 
   try {
-    const response = await fetch("../Bins/Chrys122/epsilon.onboarding.A.bin");
+    const response = await fetch("../Bins/Chrys130/epsilon.onboarding.A.bin");
     if (!response.ok) {
       throw new Error("Failed to load binary file");
     }
 
     const buffer = await response.arrayBuffer();
 
-    //await calculator.flashExternal(buffer);
+    await calculator.flashExternal(buffer);
 
     console.log(
       "Flashing epsilon.onboarding.A.bin to external memory successful!",

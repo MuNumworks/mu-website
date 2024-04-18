@@ -1,83 +1,80 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="../Styles/style.css" />
+    <link rel="icon" href="../Pictures/mu.ico" type="image/x-icon" />
+    <title>Mu</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" type="text/css" href="../Styles/style.css">
-  <link rel="icon" href="../Pictures/mu.ico" type="image/x-icon">
-  <title>Mu</title>
+  <body>
+    <header>
+      <div>
+        <h1>Mu - Bring power to your Numworks</h1>
+        <nav>
+          <ul id="nav-bar">
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="install.html">Install</a></li>
+            <li><a href="changelog.html">Release</a></li>
+            <li><a href="simulator.html">Simulator</a></li>
+            <li>
+              <a href="https://github.com/SystemeEratz" target="_blank"
+                >Github</a
+              >
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+    <main>
+      <div id="content" class="DownloadGen"></div>
 
-</head>
+      <script>
+        document.addEventListener("DOMContentLoaded", function () {
+          // Récupérer les noms des fichiers à partir des paramètres d'URL
+          const urlParams = new URLSearchParams(window.location.search);
+          const fileName = urlParams.get("file");
+          const file1 = `../Bins/${fileName}/epsilon.onboarding.A.bin`;
+          const file2 = `../Bins/${fileName}/epsilon.onboarding.B.bin`;
+          const version = urlParams.get("version");
 
-<body>
-  <header>
-    <div>
-      <h1>Mu - Bring power to your Numworks</h1>
-      <nav>
-        <ul id="nav-bar">
-          <li><a href="../index.html">Home</a></li>
-          <li><a>Install</a></li>
-          <li><a href="changelog.html">Release</a></li>
-          <li><a>Simulator</a></li>
-          <li><a href="https://github.com/SystemeEratz" target="_blank">Github</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
-  <main>
-    <div id="content" class="DownloadGen">
-    </div>
-
-    <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        // Récupérer les noms des fichiers à partir des paramètres d'URL
-        const urlParams = new URLSearchParams(window.location.search);
-        const fileName = urlParams.get('file');
-        const file1 = `../Bins/${fileName}/epsilon.onboarding.A.bin`;
-        const file2 = `../Bins/${fileName}/epsilon.onboarding.B.bin`
-        const version = urlParams.get('version');
-
-        // Générer les liens de téléchargement correspondants
-        const contentDiv = document.getElementById('content');
-        if (version) {
-          const H1 = document.createElement('H1');
-          H1.innerText = `Mu Version ${version}`;
-          contentDiv.appendChild(H1);
-        }
-        if (file1) {
-          const file1Div = document.createElement('div');
-          const file1Link = document.createElement('a');
-          file1Div.classList.add('DownloadSlot');
-          file1Link.classList.add('ADownloadSlot');
-          file1Link.href = file1;
-          file1Link.download = '';
-          file1Link.innerText = `Download slot A`;
-          file1Div.appendChild(file1Link);
-          contentDiv.appendChild(file1Div);
-        }
-        if (file2) {
-          const file2Div = document.createElement('div');
-          const file2Link = document.createElement('a');
-          file2Div.classList.add('DownloadSlot');
-          file2Link.classList.add('ADownloadSlot');
-          file2Link.href = file2;
-          file2Link.download = '';
-          file2Link.innerText = `Download slot B`;
-          file2Div.appendChild(file2Link);
-          contentDiv.appendChild(file2Div);
-        }
-      });
-    </script>
-  </main>
-  <br>
-  <footer>
-    <div id="FOOTER">
-      &copy; Systeme Eratz
-    </div>
-  </footer>
-  <br><br>
-
-</body>
-
+          // Générer les liens de téléchargement correspondants
+          const contentDiv = document.getElementById("content");
+          if (version) {
+            const H1 = document.createElement("H1");
+            H1.innerText = `Mu Version ${version}`;
+            contentDiv.appendChild(H1);
+          }
+          if (file1) {
+            const file1Div = document.createElement("div");
+            const file1Link = document.createElement("a");
+            file1Div.classList.add("DownloadSlot");
+            file1Link.classList.add("ADownloadSlot");
+            file1Link.href = file1;
+            file1Link.download = "";
+            file1Link.innerText = `Download slot A`;
+            file1Div.appendChild(file1Link);
+            contentDiv.appendChild(file1Div);
+          }
+          if (file2) {
+            const file2Div = document.createElement("div");
+            const file2Link = document.createElement("a");
+            file2Div.classList.add("DownloadSlot");
+            file2Link.classList.add("ADownloadSlot");
+            file2Link.href = file2;
+            file2Link.download = "";
+            file2Link.innerText = `Download slot B`;
+            file2Div.appendChild(file2Link);
+            contentDiv.appendChild(file2Div);
+          }
+        });
+      </script>
+    </main>
+    <br />
+    <footer>
+      <div id="FOOTER">&copy; Systeme Eratz</div>
+    </footer>
+    <br /><br />
+  </body>
 </html>
