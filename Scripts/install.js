@@ -1,16 +1,18 @@
 var calculator = new Numworks();
 
-var status = document.getElementById("status");
 var connect = document.getElementById("connect");
-var content = document.getElementById("content");
 var install = document.getElementById("installMu");
+var recovery = document.getElementById("recovery");
+
+var percentage = 0;
+
+toggleButtonsVisibility(false);
 
 navigator.usb.addEventListener("disconnect", function (e) {
   calculator.onUnexpectedDisconnect(e, function () {
-    status.innerHTML = "Disconnected.";
-    content.innerHTML = "Please connect your Numworks.";
     connect.disabled = false;
     calculator.autoConnect(autoConnectHandler);
+    toggleButtonsVisibility(false);
   });
 });
 
@@ -27,42 +29,45 @@ connect.onclick = function (e) {
       calculator.stopAutoConnect();
       connected();
     },
-    function (error) {
-      status.innerHTML = "Error: " + error;
-    },
+    function (error) {},
   );
 };
 
 install.onclick = function (e) {
-  console.log("Test Install");
+  console.log("Installing Mu on slot A");
   flashEpsilonOnboardingA();
 };
 
 async function connected() {
   connect.disabled = true;
-  status.innerHTML = "Connected.";
+  toggleButtonsVisibility(true);
+  //var connectDiv = document.getElementById("connect");
+  connect.style.display = "none";
+}
 
-  var connectDiv = document.getElementById("connect");
-  connectDiv.style.display = "none";
-
-  var html_content = "Info : " + calculator.getModel(false) + "<br/>";
-
-  content.innerHTML = html_content;
+function toggleButtonsVisibility(isConnected) {
+  if (isConnected) {
+    install.style.display = "block";
+    recovery.style.display = "block";
+    connect.style.display = "none";
+  } else {
+    install.style.display = "none";
+    recovery.style.display = "none";
+    connect.style.display = "block";
+  }
 }
 
 async function flashEpsilonOnboardingA() {
-  //const cheminFichier = "../Bins/Chrys130/epsilon.onboarding.A.bin";
-
   try {
-    const response = await fetch("../Bins/Chrys130/epsilon.onboarding.A.bin");
+    const response = await fetch("../Bins/Chrys142/epsilon.onboarding.A.bin");
     if (!response.ok) {
       throw new Error("Failed to load binary file");
     }
 
     const buffer = await response.arrayBuffer();
 
+    calculator.device.logProgress = logProgress;
     await calculator.flashExternal(buffer);
-
     console.log(
       "Flashing epsilon.onboarding.A.bin to external memory successful!",
     );
@@ -72,6 +77,13 @@ async function flashEpsilonOnboardingA() {
       error,
     );
   }
+  return true;
+}
+
+function logProgress(e, t) {
+  percentage = (e / t) * 100;
+  console.log(percentage);
+  progressBar.value = percentage;
 }
 
 async function getPy() {
