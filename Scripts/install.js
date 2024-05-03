@@ -1,4 +1,5 @@
 var calculator = new Numworks();
+var bootloader = new Numworks.Recovery();
 
 var connect = document.getElementById("connect");
 var install = document.getElementById("installMu");
@@ -38,6 +39,18 @@ install.onclick = function (e) {
   flashEpsilonOnboardingA();
 };
 
+recovery.onclick = function (e) {
+  bootloader.detect(
+    function () {
+      bootloader.stopAutoConnect();
+      connected();
+      console.log("Installing Mu Bootloader");
+      flashBootloader();
+    },
+    function (error) {},
+  );
+};
+
 async function connected() {
   connect.disabled = true;
   toggleButtonsVisibility(true);
@@ -48,13 +61,34 @@ async function connected() {
 function toggleButtonsVisibility(isConnected) {
   if (isConnected) {
     install.style.display = "block";
-    recovery.style.display = "block";
+    recovery.style.display = "none";
     connect.style.display = "none";
   } else {
     install.style.display = "none";
-    recovery.style.display = "none";
+    recovery.style.display = "block";
     connect.style.display = "block";
+    progressBar.style.display = "none";
   }
+}
+
+async function flashBootloader() {
+  try {
+    const response = await fetch("../Bins/Bootloader/bootloader.bin");
+    if (!response.ok) {
+      throw new Error("Failed to fetch bootloader.bin");
+    }
+    const buffer = await response.arrayBuffer();
+    progressBar.style.display = "block";
+    bootloader.device.logProgress = logProgress;
+    await bootloader.flashRecovery(buffer);
+    console.log(
+      "Bootloader flashed. Please reboot the calculator to complete the installation.",
+    );
+    progressBar.style.display = "none";
+  } catch (error) {
+    console.error("Error while flashing bootloader:", error);
+  }
+  return true;
 }
 
 async function flashEpsilonOnboardingA() {
@@ -65,12 +99,13 @@ async function flashEpsilonOnboardingA() {
     }
 
     const buffer = await response.arrayBuffer();
-
+    progressBar.style.display = "block";
     calculator.device.logProgress = logProgress;
     await calculator.flashExternal(buffer);
     console.log(
       "Flashing epsilon.onboarding.A.bin to external memory successful!",
     );
+    progressBar.style.display = "none";
   } catch (error) {
     console.error(
       "Error while flashing epsilon.onboarding.A.bin to external memory:",
@@ -81,6 +116,7 @@ async function flashEpsilonOnboardingA() {
 }
 
 function logProgress(e, t) {
+  console.log(e, t);
   percentage = (e / t) * 100;
   console.log(percentage);
   progressBar.value = percentage;

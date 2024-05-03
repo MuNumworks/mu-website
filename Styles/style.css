@@ -335,3 +335,9 @@ footer {
   display: flex;
   align-self: center;
 }
+
+#progressBar {
+  margin: 30px;
+  width: auto;
+  height: 30px;
+}
