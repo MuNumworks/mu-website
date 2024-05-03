@@ -93,7 +93,7 @@ async function flashBootloader() {
 
 async function flashEpsilonOnboardingA() {
   try {
-    const response = await fetch("../Bins/Chrys142/epsilon.onboarding.A.bin");
+    const response = await fetch("../Bins/Chrys143/epsilon.onboarding.A.bin");
     if (!response.ok) {
       throw new Error("Failed to load binary file");
     }
