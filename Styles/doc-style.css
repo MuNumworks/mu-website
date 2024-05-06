@@ -1,0 +1,142 @@
+@font-face {
+    font-family: 'Josefin';
+    src: url('../Fonts/JosefinSans.ttf') format('truetype');
+}
+
+html {
+    color: #FFF;
+    font-family: 'Josefin', sans-serif;
+    /*background-color: #300027;*/
+    background-color: #2B1040;
+    height: 100%;
+    width: 100%;
+}
+
+header {
+    margin: 0;
+    padding: 0;
+}
+
+header div {
+    color: #FFF;
+    margin: 0;
+    padding: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 15%;
+    background-color: #7E008D;
+    border: 1px solid black;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+    text-align: left;
+    margin-left: 20px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+header a {
+    color: #FFF;
+    padding: 6px;
+    text-decoration: none;
+}
+
+header a:hover {
+    background-color: #60006f;
+    border-radius: 6px;
+}
+
+#nav-bar {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    list-style-type: none;
+    display: flex;
+}
+
+#nav-bar ul {
+    margin-right: 20px;
+}
+
+#nav-bar li {
+    font-size: 1.5em;
+    margin-right: 30px;
+}
+
+main {
+    margin-top: 10%;
+    color: #FFF;
+    order: 2;
+}
+
+#doc-articles {
+    display: flex;
+    flex-direction: column;
+}
+
+main h1 {
+    text-align: center;
+    color: #E10657;
+}
+
+.article {
+    background-color: #7E008D;
+    margin: 20px;
+    padding: 20px;
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-top: 0;
+    width: auto;
+    border: 1px solid black;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+.article:hover {
+    background-color: #60006f;
+}
+
+.article h2 {
+    text-align: right;
+    margin-right: 20px;
+    color: #E10657;
+}
+
+.article ul {
+    list-style-type: decimal;
+    line-height: 1.5;
+}
+
+#sommaire li {
+    color: #E10657;
+    text-decoration: none;
+}
+
+.article li a {
+    color: #FFF;
+}
+
+.article p {
+    line-height: 1.5em;
+    margin-bottom: 40px;
+}
+
+.article .exemple-with-picture {
+    display: flex;
+    flex-direction: line;
+    justify-content: space-between;
+    margin-bottom: 40px;
+}
+
+.article .exemple-with-picture img {
+    width: 28%;
+    border: 1px solid #fff;
+    border-radius: 10px;
+}
+
+footer {
+    text-align: center;
+}
