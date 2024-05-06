@@ -1,7 +1,7 @@
-// Script Store test -- will be integrated into install page
+// Script my-calc test -- will be integrated into install page
 var calculator = new Numworks();
 
-var connect_button = document.getElementById("store-connect");
+var connect_button = document.getElementById("my-calc-connect");
 
 navigator.usb.addEventListener("disconnect", function (e) {
     calculator.onUnexpectedDisconnect(e, function () {
@@ -34,7 +34,7 @@ connect_button.onclick = function (e) {
 async function getPyTitles() {
     let data = await calculator.backupStorage();
 
-    var scriptsContainer = document.getElementById("script-container");
+    var scriptsContainer = document.getElementById("my-calc-script-container");
 
     for (var i = 0; i < data.records.length; i++) {
         if (data.records[i].type === "py") {
@@ -43,11 +43,11 @@ async function getPyTitles() {
 
             // Créer une div pour afficher le script
             var scriptDiv = document.createElement("div");
-            scriptDiv.classList.add("script");
+            scriptDiv.classList.add("my-calc-script");
 
             // Créer une div pour aligner le nom du script et le bouton pour le télécharger
             var scriptHeader = document.createElement("div");
-            scriptHeader.classList.add("store-script-header");
+            scriptHeader.classList.add("my-calc-header");
 
             // Créer un titre avec le nom du script
             var scriptTitle = document.createElement("h2");
@@ -56,7 +56,7 @@ async function getPyTitles() {
 
             // Créer un bouton pour télécharger le fichier
             var scriptButton = document.createElement("div");
-            scriptButton.classList.add("store-script-download-button");
+            scriptButton.classList.add("my-calc-download-button");
             scriptButton.textContent = "download";
             scriptHeader.appendChild(scriptButton);
 
@@ -64,7 +64,7 @@ async function getPyTitles() {
 
             // Créer un paragraphe pour afficher le contenu du script
             var scriptContentPre = document.createElement("pre");
-            scriptContentPre.classList.add("store-pre");
+            scriptContentPre.classList.add("my-calc-pre");
             var scriptContentCode = document.createElement("code");
             scriptContentCode.classList.add("language-python");
             scriptContentCode.textContent = record.code;
@@ -79,9 +79,7 @@ async function getPyTitles() {
 
     Prism.highlightAll();
     // Ajoutez un gestionnaire d'événements à chaque scriptButton
-    var scriptButtons = document.querySelectorAll(
-        ".store-script-download-button",
-    );
+    var scriptButtons = document.querySelectorAll(".my-calc-download-button");
     scriptButtons.forEach(function (scriptButton) {
         scriptButton.onclick = function () {
             // Obtenez le titre et le contenu du script

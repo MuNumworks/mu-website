@@ -344,13 +344,13 @@ footer {
   height: 30px;
 }
 
-.store {
+.my-calc {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.store-button {
+.my-calc-button {
   background-color: #E10657;
   border: none;
   color: #FFF;
@@ -365,16 +365,16 @@ footer {
   width: 100px;
 }
 
-.store-button:hover {
+.my-calc-button:hover {
   background-color: #CD0043;
 }
 
-#script-container {
+#my-calc-script-container {
   display: flex;
   flex-direction: column;
 }
 
-.script {
+.my-calc-script {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -389,7 +389,7 @@ footer {
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-.store-pre {
+.my-calc-pre {
   order: 9;
   border-radius: 10px;
   padding: 20px;
@@ -400,13 +400,13 @@ footer {
   overflow: auto;
 }
 
-.store-script-header {
+.my-calc-header {
   display: flex;
   flex-direction: line;
   justify-content: space-between;
 }
 
-.store-script-download-button {
+.my-calc-download-button {
   background-color: #E10657;
   justify-content: center;
   align-items: center;
@@ -423,6 +423,6 @@ footer {
   width: 100px;
 }
 
-.store-script-download-button:hover {
+.my-calc-download-button:hover {
   background-color: #CD0043;
 }
