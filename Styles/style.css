@@ -426,3 +426,28 @@ footer {
 .my-calc-download-button:hover {
   background-color: #CD0043;
 }
+
+#script-store-fileList {
+  display: flex;
+  flex-direction: column;
+}
+
+.script-store-python-file-link {
+  text-decoration: none;
+}
+
+.script-store-python-file {
+  margin: 40px;
+  padding: 20px;
+  width: auto;
+  background-color: #7E008D;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  border-radius: 10px;
+  border: 1px solid black;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.script-store-python-file h2 {
+  color: #E10657;
+}

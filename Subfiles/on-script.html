@@ -1,0 +1,92 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Mu -- On Script</title>
+    <link rel="stylesheet" type="text/css" href="../Styles/style.css" />
+    <link rel="stylesheet" href="../Styles/prism.css" />
+    <link rel="icon" href="../Pictures/mu.ico" type="image/x-icon" />
+  </head>
+
+  <body>
+    <header>
+      <div>
+        <h1>Mu - Bring power to your Numworks</h1>
+        <nav>
+          <ul id="nav-bar">
+            <li>
+              <a href="../index.html">Home</a>
+            </li>
+            <li><a href="Subfiles/install.html">Install</a></li>
+            <li><a href="Subfiles/changelog.html">Releases</a></li>
+            <li><a href="Subfiles/simulator.html">Simulator</a></li>
+            <li>
+              <a href="https://github.com/MuNumworks/mu-website" target="_blank"
+                >Github</a
+              >
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <div id="content" class="on-script-gen"></div>
+    </main>
+
+    <footer>
+      <div id="FOOTER">&copy; Systeme Eratz</div>
+    </footer>
+
+    <script>
+      window.addEventListener("load", function () {
+        const urlParams = new URLSearchParams(window.location.search);
+        const fileName = urlParams.get("file");
+        const file = `../Python/Store/${fileName}`;
+
+        fetch(file)
+          .then((response) => response.text())
+          .then((content) => {
+            var script_content = document.getElementById("content");
+            var scriptDiv = document.createElement("div");
+            scriptDiv.classList.add("my-calc-script");
+
+            // Créer une div pour aligner le nom du script et le bouton pour le télécharger
+            var scriptHeader = document.createElement("div");
+            scriptHeader.classList.add("my-calc-header");
+
+            // Créer un titre avec le nom du script
+            var scriptTitle = document.createElement("h2");
+            scriptTitle.textContent = fileName;
+            scriptHeader.appendChild(scriptTitle);
+
+            // Créer un bouton pour télécharger le fichier
+            var scriptButton = document.createElement("div");
+            scriptButton.classList.add("my-calc-download-button");
+            scriptButton.textContent = "Send to calculator";
+            scriptHeader.appendChild(scriptButton);
+
+            scriptDiv.appendChild(scriptHeader);
+
+            // Créer un paragraphe pour afficher le contenu du script
+            var scriptContentPre = document.createElement("pre");
+            scriptContentPre.classList.add("my-calc-pre");
+            var scriptContentCode = document.createElement("code");
+            scriptContentCode.classList.add("language-python");
+            scriptContentCode.textContent = content;
+            scriptContentPre.appendChild(scriptContentCode);
+            scriptDiv.appendChild(scriptContentPre);
+
+            // Ajouter la div du script à la page
+            script_content.appendChild(scriptDiv);
+          })
+          .catch((error) => console.error("Erreur:", error));
+
+        setTimeout(function () {
+          Prism.highlightAll();
+        }, 100);
+      });
+    </script>
+  </body>
+</html>
